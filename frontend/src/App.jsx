@@ -143,7 +143,7 @@ function App() {
       }
     } catch (error) {
       logTraffic('GET', url, 500, null, { success: false, error: error.message });
-      showToast('Failed to connect to backend server. Make sure server is running on port 5003.', 'error');
+      showToast('Failed to connect to backend server.', 'error');
     } finally {
       setLoading(false);
     }
@@ -369,7 +369,7 @@ function App() {
               <i className="fa-solid fa-boxes-stacked"></i>
             </div>
             <div className="logo-text">
-              <h1>stock-it Product Inventory</h1>
+              <h1>stock-it</h1>
             </div>
           </div>
 
