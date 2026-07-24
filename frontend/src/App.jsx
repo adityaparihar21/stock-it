@@ -270,6 +270,24 @@ function App() {
     }
   };
 
+  const clearAllData = async () => {
+    if (!window.confirm('Are you absolutely sure you want to delete ALL products? This cannot be undone.')) return;
+    
+    setLoading(true);
+    const url = `${API_URL}/products`;
+    try {
+      const response = await deleteAllProducts();
+      logTraffic('DELETE', url, response.status, null, response.data);
+      showToast('All products deleted successfully!', 'success');
+      await fetchProducts();
+      await fetchStats();
+    } catch (error) {
+      logTraffic('DELETE', url, 500, null, { success: false, error: error.message });
+      showToast(error.response?.data?.message || 'Failed to delete all products', 'error');
+      setLoading(false);
+    }
+  };
+
   const seedSampleData = async () => {
     const sampleProducts = [
       {
