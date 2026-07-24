@@ -417,6 +417,8 @@ function App() {
               getStockClassAndText={getStockClassAndText}
               currentPage={currentPage}
               setCurrentPage={setCurrentPage}
+              seedSampleData={seedSampleData}
+              seeding={seeding}
             />
           </main>
         </div>

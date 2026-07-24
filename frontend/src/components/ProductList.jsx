@@ -17,6 +17,8 @@ const ProductList = ({
   getStockClassAndText,
   currentPage,
   setCurrentPage,
+  seedSampleData,
+  seeding,
   pageSize = 7
 }) => {
   // Filter products by search & category
@@ -101,6 +103,16 @@ const ProductList = ({
           {/* Refresh Button */}
           <button className="btn btn-secondary btn-icon-only" onClick={fetchProducts} title="Refresh Inventory">
             <i className={`fa-solid fa-rotate ${loading ? 'fa-spin' : ''}`}></i>
+          </button>
+          
+          {/* Load Samples Button */}
+          <button 
+            className="btn btn-secondary btn-icon-only" 
+            onClick={seedSampleData} 
+            title="Load Sample Data"
+            disabled={seeding}
+          >
+            <i className={`fa-solid fa-cloud-arrow-down ${seeding ? 'fa-bounce' : ''}`}></i>
           </button>
         </div>
       </div>
