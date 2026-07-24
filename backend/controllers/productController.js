@@ -222,11 +222,27 @@ const getInventoryStats = async (req, res) => {
   }
 };
 
+// @desc    Delete all products
+// @route   DELETE /products/all
+// @access  Public
+const deleteAllProducts = async (req, res) => {
+  try {
+    await Product.deleteMany({});
+    res.status(200).json({
+      success: true,
+      message: "All products deleted successfully"
+    });
+  } catch (error) {
+    res.status(500).json({ success: false, message: "Server Error", error: error.message });
+  }
+};
+
 module.exports = {
   createProduct,
   getAllProducts,
   getProductById,
   updateProduct,
   deleteProduct,
-  getInventoryStats
+  getInventoryStats,
+  deleteAllProducts
 };

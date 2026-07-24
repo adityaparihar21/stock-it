@@ -19,6 +19,7 @@ const ProductList = ({
   setCurrentPage,
   seedSampleData,
   seeding,
+  clearAllData,
   pageSize = 7
 }) => {
   // Filter products by search & category
@@ -113,6 +114,17 @@ const ProductList = ({
             disabled={seeding}
           >
             <i className={`fa-solid fa-cloud-arrow-down ${seeding ? 'fa-bounce' : ''}`}></i>
+          </button>
+
+          {/* Delete All Button */}
+          <button 
+            className="btn btn-secondary btn-icon-only" 
+            onClick={clearAllData} 
+            title="Delete All Data"
+            disabled={loading || products.length === 0}
+            style={{ color: '#ef4444', borderColor: 'transparent' }}
+          >
+            <i className="fa-solid fa-trash"></i>
           </button>
         </div>
       </div>

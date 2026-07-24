@@ -4,7 +4,8 @@ import {
   getInventoryStats,
   createProduct,
   updateProduct,
-  deleteProduct
+  deleteProduct,
+  deleteAllProducts
 } from './services/api';
 
 import StatsOverview from './components/StatsOverview';
@@ -419,6 +420,7 @@ function App() {
               setCurrentPage={setCurrentPage}
               seedSampleData={seedSampleData}
               seeding={seeding}
+              clearAllData={clearAllData}
             />
           </main>
         </div>
