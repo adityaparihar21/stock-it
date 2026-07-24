@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>stock-it API - Express & Mongoose Inventory Backend</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --bg: #0f172a;
+      --card-bg: #1e293b;
+      --border: #334155;
+      --accent: #ca8f53;
+      --accent-glow: rgba(202, 143, 83, 0.2);
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+      --green: #10b981;
+      --blue: #3b82f6;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      padding: 2rem;
+    }
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    header {
+      text-align: center;
+      margin-bottom: 2.5rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .badge {
+      display: inline-block;
+      padding: 0.25rem 0.75rem;
+      background: var(--accent-glow);
+      color: var(--accent);
+      border-radius: 9999px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+    h1 { font-size: 2.25rem; font-weight: 700; margin-bottom: 0.5rem; }
+    p.subtitle { color: var(--text-muted); font-size: 1.1rem; }
+    
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2.5rem;
+    }
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.5rem;
+    }
+    .card h3 { font-size: 1.1rem; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem; }
+    
+    .endpoint-list { list-style: none; display: flex; flex-direction: column; gap: 0.75rem; }
+    .endpoint-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.6rem 0.8rem;
+      background: #0f172a;
+      border-radius: 6px;
+      font-family: monospace;
+      font-size: 0.9rem;
+    }
+    .method {
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+      font-weight: bold;
+      font-size: 0.75rem;
+    }
+    .get { background: rgba(59, 130, 246, 0.2); color: #60a5fa; }
+    .post { background: rgba(16, 185, 129, 0.2); color: #34d399; }
+    .put { background: rgba(245, 158, 11, 0.2); color: #fbbf24; }
+    .delete { background: rgba(239, 68, 68, 0.2); color: #f87171; }
+    
+    a.btn {
+      display: inline-block;
+      padding: 0.75rem 1.5rem;
+      background: var(--accent);
+      color: #0f172a;
+      font-weight: 600;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: transform 0.2s, opacity 0.2s;
+    }
+    a.btn:hover { opacity: 0.9; transform: translateY(-2px); }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <span class="badge"><i class="fa-solid fa-server"></i> API ACTIVE (Port 5003)</span>
+      <h1>stock-it Product Inventory REST API</h1>
+      <p class="subtitle">Powered by Express.js, Mongoose & MongoDB</p>
+    </header>
+
+    <div class="grid">
+      <div class="card">
+        <h3><i class="fa-solid fa-list-check" style="color: var(--accent);"></i> Available Endpoints</h3>
+        <ul class="endpoint-list">
+          <li class="endpoint-item"><span class="method get">GET</span> <span>/products</span></li>
+          <li class="endpoint-item"><span class="method get">GET</span> <span>/products/stats</span></li>
+          <li class="endpoint-item"><span class="method get">GET</span> <span>/products/:id</span></li>
+          <li class="endpoint-item"><span class="method post">POST</span> <span>/products</span></li>
+          <li class="endpoint-item"><span class="method put">PUT</span> <span>/products/:id</span></li>
+          <li class="endpoint-item"><span class="method delete">DELETE</span> <span>/products/:id</span></li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3><i class="fa-solid fa-database" style="color: var(--green);"></i> Database Schema</h3>
+        <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1rem;">
+          MongoDB Collection: <code>product_inventory.products</code>
+        </p>
+        <ul style="list-style: square; padding-left: 1.2rem; color: var(--text-muted); font-size: 0.88rem;">
+          <li><strong>name</strong>: String (Required)</li>
+          <li><strong>brand</strong>: String (Required)</li>
+          <li><strong>category</strong>: String (Required)</li>
+          <li><strong>price</strong>: Number (Required, Min: 0)</li>
+          <li><strong>stock</strong>: Integer (Required, Min: 0)</li>
+          <li><strong>description</strong>: String (Optional)</li>
+          <li><strong>imageUrl</strong>: String (Optional)</li>
+        </ul>
+      </div>
+    </div>
+
+    <div style="text-align: center;">
+      <a href="/products" class="btn" target="_blank"><i class="fa-solid fa-arrow-up-right-from-square"></i> Test /products Route</a>
+    </div>
+  </div>
+</body>
+</html>
